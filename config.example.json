@@ -1,0 +1,21 @@
+{
+  "port": 8787,
+  "host": "0.0.0.0",
+  "mode": "video",
+  "roots": {
+    "Film": "/storage/emulated/0/Server/Film",
+    "Anime": "/storage/emulated/0/Server/Anime",
+    "Musica": "/storage/emulated/0/Server/Musica",
+    "File": "/storage/emulated/0/Server/File"
+  },
+  "navidromeUrl": "http://127.0.0.1:4533",
+  "navidromeUser": "",
+  "navidromePassword": "",
+  "musicCatalogPath": "Libreria/catalogo_musica.json",
+  "musicPathPrefix": "Libreria",
+  "otherLibraryUrl": "",
+  "maxUploadGB": 20,
+  "metadataDelayMs": 2000,
+  "localLogosDir": "data/loghi-locali",
+  "posterConTitolo": []
+}

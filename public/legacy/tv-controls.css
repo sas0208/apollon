@@ -1,0 +1,52 @@
+html.tv{scroll-padding-top:130px;scroll-padding-bottom:40px}
+html.tv :focus{outline:5px solid #ff8c42 !important;outline-offset:5px !important}
+html.tv button,
+html.tv a,
+html.tv input,
+html.tv select,
+html.tv summary{scroll-margin:140px 24px 42px}
+html.tv .t-card:focus,
+html.tv .c-open:focus{transform:scale(1.035);position:relative;z-index:4;border-radius:10px;box-shadow:0 0 0 8px #121212, 0 14px 36px #0009 !important}
+html.tv body.video-mode .c-card{outline:none !important;transform:none !important}
+html.tv .v-track{scroll-padding-left:40px;scroll-padding-right:40px;overflow-y:hidden}
+html.tv dialog{scroll-padding-top:30px;scroll-padding-bottom:35px}
+html.tv dialog button,
+html.tv dialog input,
+html.tv dialog select{scroll-margin-top:35px;scroll-margin-bottom:35px}
+html.tv .ep{content-visibility:visible;contain:none;overflow:visible}
+html.tv .ep-open:focus{background:#ff8c4214;box-shadow:inset 0 0 0 4px #ff8c42 !important}
+html.tv #video:focus{outline-offset:-6px !important}
+html.tv .topbar{background:#121212}
+html.tv #main-nav{overflow:visible}
+html.tv.remote-input,
+html.tv.remote-input *{cursor:none !important}
+html.tv #vp-layer.idle:focus-within{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion: reduce){html.tv .t-card:focus,
+  html.tv .c-open:focus{transform:none}
+html.tv *{scroll-behavior:auto !important;transition:none !important}}
+@media (min-width: 900px){html.tv body.video-mode,
+  html.tv #title-dialog{--top:104px;--gutter:72px}
+html.tv body.video-mode .topbar{gap:44px;background:linear-gradient(
+        #000e,
+        #000c 70%,
+        #0000) !important;border:0}
+html.tv body.video-mode .brand{font-size:1.75rem;gap:14px;pointer-events:none}
+html.tv body.video-mode .brand img{width:46px;height:46px}
+html.tv body.video-mode #main-nav{gap:10px;background:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+html.tv body.video-mode #main-nav button{min-height:56px;padding:0 24px;border-radius:999px;font-size:1.4rem;font-weight:600;color:#d6d6da}
+html.tv body.video-mode #main-nav button[aria-pressed=true]{color:#fff;font-weight:800;background:#ffffff1f}
+html.tv body.video-mode #main-nav button:focus{background:var(--accent);color:var(--accent-ink);outline:none !important;box-shadow:none}
+html.tv body.video-mode #main-nav .nav-music:focus{background:#2cd46b;color:#04210f}
+html.tv body.video-mode .top-tools{gap:14px}
+html.tv body.video-mode #top-search{background:#ffffff14}
+html.tv body.video-mode #top-search svg{width:28px;height:28px}
+html.tv body.video-mode .v-track{padding-top:20px;padding-bottom:24px}
+html.tv body.video-mode #top-search,
+  html.tv body.video-mode .avatar-button{width:56px;height:56px;min-width:56px;min-height:56px;border-radius:50%}
+html.tv body.video-mode #top-search:focus,
+  html.tv body.video-mode .avatar-button:focus{outline-offset:3px !important}
+html.tv body.video-mode #tv-toggle{min-height:52px;font-size:1.05rem;padding:0 20px}}
+html.tv body.video-mode .c-more,
+html.tv body.video-mode .t-more,
+html.tv body.video-mode .row-arrow{display:none !important}
+html.tv body.video-mode .c-info{padding-right:14px}

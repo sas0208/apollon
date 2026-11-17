@@ -1,0 +1,8 @@
+data/
+demo-data/
+output/
+config.json
+*.log
+node_modules/
+__pycache__/
+*.pyc

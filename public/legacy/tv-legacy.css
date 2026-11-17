@@ -1,0 +1,270 @@
+/* tv-legacy.css: solo per Chromium 76 (TV). Parte scritta a mano, poi i ripieghi generati da scripts/build-legacy.mjs. */
+.tp-hero,.bb-frame,.t-art,.c-art,.ep-art{overflow:hidden}
+
+label>:not([hidden])~:not([hidden]){margin-top:8px}
+.actions>:not([hidden])~:not([hidden]){margin-left:12px}
+.actions>*{margin-bottom:12px}
+.topbar>:not([hidden])~:not([hidden]){margin-left:42px}
+.brand>:not([hidden])~:not([hidden]){margin-left:12px}
+.topbar nav>:not([hidden])~:not([hidden]){margin-left:4px}
+.top-tools>:not([hidden])~:not([hidden]){margin-left:8px}
+.top-tools:not(#z){margin-left:auto}
+.catalog-tools>:not([hidden])~:not([hidden]){margin-left:24px}
+.filters>:not([hidden])~:not([hidden]){margin-left:20px}
+.segmented>:not([hidden])~:not([hidden]){margin-left:6px}
+.segmented>*{margin-bottom:6px}
+.genre-label>:not([hidden])~:not([hidden]){margin-left:10px}
+.shelf>:not([hidden])~:not([hidden]){margin-left:20px}
+.cover::before{content:"";display:block;width:0;padding-top:62.5%}
+.empty h2:not(#z){margin-left:auto}
+.empty h1:not(#z){margin-left:auto}
+.empty p:not(#z){margin-left:auto}
+.page-title>:not([hidden])~:not([hidden]){margin-left:22px}
+.albums .cover::before{content:"";display:block;width:auto;padding-top:100%}
+.album-heading>:not([hidden])~:not([hidden]){margin-left:24px}
+.track-row>:not([hidden])~:not([hidden]){margin-left:12px}
+.track-row .track-main>:not([hidden])~:not([hidden]){margin-left:16px}
+.space-row>:not([hidden])~:not([hidden]){margin-left:24px}
+.manage-toolbar>:not([hidden])~:not([hidden]){margin-left:12px}
+.manage-toolbar>*{margin-bottom:12px}
+.upload-panel form>:not([hidden])~:not([hidden]){margin-left:22px}
+.file-heading>:not([hidden])~:not([hidden]){margin-top:12px}
+footer>:not([hidden])~:not([hidden]){margin-top:24px}
+footer > div>:not([hidden])~:not([hidden]){margin-left:10px}
+footer > div>*{margin-bottom:10px}
+.dialog-heading>:not([hidden])~:not([hidden]){margin-left:20px}
+.player-tools>:not([hidden])~:not([hidden]){margin-left:12px}
+.player-tools>*{margin-bottom:12px}
+.check>:not([hidden])~:not([hidden]){margin-left:10px}
+.episode-row>:not([hidden])~:not([hidden]){margin-left:10px}
+.episode-row>*{margin-bottom:10px}
+.trash-row>:not([hidden])~:not([hidden]){margin-left:15px}
+.audio-bar>:not([hidden])~:not([hidden]){margin-left:16px}
+.audio-bar>*{margin-bottom:16px}
+.audio-seek>:not([hidden])~:not([hidden]){margin-left:12px}
+.audio-bar .volume>:not([hidden])~:not([hidden]){margin-left:10px}
+@media (max-width: 1100px){.topbar>:not([hidden])~:not([hidden]){margin-left:15px}
+.topbar>*{margin-bottom:15px}
+.top-tools:not(#z){margin-left:auto}
+.audio-bar>:not([hidden])~:not([hidden]){margin-left:8px}
+.audio-bar>*{margin-bottom:8px}}
+@media (max-width: 650px){.topbar>:not([hidden])~:not([hidden]){margin-left:10px}
+.topbar>*{margin-bottom:10px}
+.top-tools>:not([hidden])~:not([hidden]){margin-left:4px}
+.catalog-tools>:not([hidden])~:not([hidden]){margin-left:16px}
+.catalog-tools>*{margin-bottom:16px}
+.filters>:not([hidden])~:not([hidden]){margin-left:12px}
+.filters>*{margin-bottom:12px}
+.cover::before{content:"";display:block;width:0;padding-top:75%}
+.space-row>:not([hidden])~:not([hidden]){margin-left:18px}
+.track-row>:not([hidden])~:not([hidden]){margin-left:4px}
+.track-row .track-main>:not([hidden])~:not([hidden]){margin-left:6px}
+.audio-bar>:not([hidden])~:not([hidden]){margin-left:8px}
+.audio-bar>*{margin-bottom:8px}
+footer>:not([hidden])~:not([hidden]){margin-top:8px}
+footer > div>:not([hidden])~:not([hidden]){margin-left:5px}
+footer > div>*{margin-bottom:5px}}
+.genre-chips>:not([hidden])~:not([hidden]){margin-left:8px}
+.genre-chips>*{margin-bottom:8px}
+.video-card .cover::before{content:"";display:block;width:auto;padding-top:150%}
+.resume-card .cover::before{content:"";display:block;width:auto;padding-top:56.25%}
+.music-album-grid .cover::before{content:"";display:block;width:auto;padding-top:100%}
+@media (max-width: 650px){.music-player .full-layout>:not([hidden])~:not([hidden]){margin-top:16px}}
+.music-options>:not([hidden])~:not([hidden]){margin-left:12px}
+.music-options>*{margin-bottom:12px}
+.menu-actions>:not([hidden])~:not([hidden]){margin-top:12px}
+@media (max-width: 650px){.music-options>:not([hidden])~:not([hidden]){margin-left:8px}
+.music-options>*{margin-bottom:8px}}
+@media (max-width: 650px){.music-player.show-words .full-layout>:not([hidden])~:not([hidden]){margin-top:16px}}
+.player-cards:not(#z){margin-left:auto}
+#music-nav button>:not([hidden])~:not([hidden]){margin-top:3px}
+.music-top>:not([hidden])~:not([hidden]){margin-left:8px}
+.music-search-field .search>:not([hidden])~:not([hidden]){margin-left:10px}
+.section-top>:not([hidden])~:not([hidden]){margin-left:12px}
+.section-tools>:not([hidden])~:not([hidden]){margin-left:2px}
+.section-tools:not(#z){margin-left:auto}
+.chips>:not([hidden])~:not([hidden]){margin-left:8px}
+.art::before{content:"";display:block;width:auto;padding-top:100%}
+.home-top>:not([hidden])~:not([hidden]){margin-left:8px}
+.quick-open>:not([hidden])~:not([hidden]){margin-left:10px}
+.shelf-head>:not([hidden])~:not([hidden]){margin-left:12px}
+.shelf-row>:not([hidden])~:not([hidden]){margin-left:14px}
+.recent-list li>:not([hidden])~:not([hidden]){margin-left:4px}
+.recent-query>:not([hidden])~:not([hidden]){margin-left:14px}
+#music-page .top-result>:not([hidden])~:not([hidden]){margin-top:4px}
+.hero-actions>:not([hidden])~:not([hidden]){margin-left:8px}
+.hero-tools>:not([hidden])~:not([hidden]){margin-left:2px}
+.hero-tools>*{margin-bottom:2px}
+.hero-play>:not([hidden])~:not([hidden]){margin-left:10px}
+.playlist-edit>:not([hidden])~:not([hidden]){margin-left:12px}
+.playlist-edit>*{margin-bottom:12px}
+.playlist-edit-actions>:not([hidden])~:not([hidden]){margin-left:8px}
+.skeleton-shelf>:not([hidden])~:not([hidden]){margin-left:14px}
+.skeleton-block.hero::before{content:"";display:block;width:auto;padding-top:100%}
+.skeleton-row>:not([hidden])~:not([hidden]){margin-left:12px}
+.library-sort>:not([hidden])~:not([hidden]){margin-left:6px}
+.library-row>:not([hidden])~:not([hidden]){margin-left:12px}
+.library-copy>:not([hidden])~:not([hidden]){margin-top:3px}
+.library-copy small>:not([hidden])~:not([hidden]){margin-left:5px}
+.library-links>:not([hidden])~:not([hidden]){margin-left:8px}
+.sheet-item>:not([hidden])~:not([hidden]){margin-left:14px}
+.sheet-copy>:not([hidden])~:not([hidden]){margin-top:2px}
+@media (max-width: 899px){#audio-bar .bar-track>:not([hidden])~:not([hidden]){margin-left:10px}
+#audio-bar #open-music-player>:not([hidden])~:not([hidden]){margin-top:1px}}
+@media (min-width: 900px){#music-nav>:not([hidden])~:not([hidden]){margin-top:2px}
+#music-nav button>:not([hidden])~:not([hidden]){margin-left:16px}
+.hero-actions>:not([hidden])~:not([hidden]){margin-left:12px}
+.hero-play>:not([hidden])~:not([hidden]){margin-left:16px}
+#audio-bar .bar-track>:not([hidden])~:not([hidden]){margin-left:12px}
+#audio-bar #open-music-player>:not([hidden])~:not([hidden]){margin-top:2px}
+#audio-bar .bar-center>:not([hidden])~:not([hidden]){margin-top:2px}
+#audio-bar .bar-buttons>:not([hidden])~:not([hidden]){margin-left:14px}
+#audio-bar .bar-tools>:not([hidden])~:not([hidden]){margin-left:2px}}
+.side-row>:not([hidden])~:not([hidden]){margin-left:12px}
+.side-copy>:not([hidden])~:not([hidden]){margin-top:2px}
+.now-head>:not([hidden])~:not([hidden]){margin-left:8px}
+.now-next>:not([hidden])~:not([hidden]){margin-left:10px}
+body.video-mode .topbar>:not([hidden])~:not([hidden]){margin-left:4px}
+body.video-mode .top-tools:not(#z){margin-left:auto}
+@media (max-width: 899px){body.video-mode #main-nav>:not([hidden])~:not([hidden]){margin-left:8px}
+body.video-mode #main-nav .nav-kind>:not([hidden])~:not([hidden]){margin-left:4px}
+body.video-mode #main-nav .nav-genres>:not([hidden])~:not([hidden]){margin-left:4px}}
+.video-nav button>:not([hidden])~:not([hidden]){margin-top:3px}
+.sk-billboard::before{content:"";display:block;width:auto;padding-top:150%}
+.sk-row>:not([hidden])~:not([hidden]){margin-left:8px}
+.sk-card::before{content:"";display:block;width:auto;padding-top:150%}
+@media (min-width: 900px){.sk-billboard::before{display:none}}
+.v-play>:not([hidden])~:not([hidden]){margin-left:8px}
+.v-second>:not([hidden])~:not([hidden]){margin-left:8px}
+.v-meta>*{margin-bottom:6px}
+.v-chips>:not([hidden])~:not([hidden]){margin-left:8px}
+.v-chips>*{margin-bottom:8px}
+.v-chip>:not([hidden])~:not([hidden]){margin-left:6px}
+.page-head>:not([hidden])~:not([hidden]){margin-left:24px}
+.page-head>*{margin-bottom:12px}
+.bb-frame::before{content:"";display:block;width:auto;padding-top:150%}
+.v-track>:not([hidden])~:not([hidden]){margin-left:8px}
+.t-art::before{content:"";display:block;width:auto;padding-top:150%}
+.c-art::before{content:"";display:block;width:auto;padding-top:56.25%}
+.c-info>:not([hidden])~:not([hidden]){margin-left:4px}
+.c-text>:not([hidden])~:not([hidden]){margin-top:1px}
+.nv-list>:not([hidden])~:not([hidden]){margin-top:30px}
+.nv-frame::before{content:"";display:block;width:auto;padding-top:56.25%}
+.nv-head>:not([hidden])~:not([hidden]){margin-left:10px}
+.nv-actions>:not([hidden])~:not([hidden]){margin-left:6px}
+.search-bar>:not([hidden])~:not([hidden]){margin-left:10px}
+.genre-tile::before{content:"";display:block;width:0;padding-top:56.25%}
+.list-cell>:not([hidden])~:not([hidden]){margin-top:4px}
+.list-remove>:not([hidden])~:not([hidden]){margin-left:4px}
+.tp-art::before{content:"";display:block;width:auto;padding-top:56.25%}
+.tp-main>:not([hidden])~:not([hidden]){margin-top:8px}
+.tp-resume>:not([hidden])~:not([hidden]){margin-left:10px}
+.tp-ep-head>:not([hidden])~:not([hidden]){margin-left:12px}
+.season-button>:not([hidden])~:not([hidden]){margin-left:8px}
+.ep-art::before{content:"";display:block;width:auto;padding-top:56.25%}
+.ep-text>:not([hidden])~:not([hidden]){margin-top:3px}
+.avatar-choice>:not([hidden])~:not([hidden]){margin-top:8px}
+.avatar-choice-face{height:100%}
+.who-wrap>:not([hidden])~:not([hidden]){margin-top:26px}
+.who-tile>:not([hidden])~:not([hidden]){margin-top:10px}
+.who-face{height:120px}
+.vp-top>:not([hidden])~:not([hidden]){margin-left:8px}
+.vp-center>:not([hidden])~:not([hidden]){margin-left:90px}
+.vp-seekrow>:not([hidden])~:not([hidden]){margin-left:12px}
+.vp-tools>:not([hidden])~:not([hidden]){margin-left:4px}
+.vp-tools>*{margin-bottom:4px}
+.vp-tool>:not([hidden])~:not([hidden]){margin-left:7px}
+.player-tools>:not([hidden])~:not([hidden]){margin-left:10px}
+.player-tools>*{margin-bottom:10px}
+.next-card>:not([hidden])~:not([hidden]){margin-left:12px}
+.next-copy>:not([hidden])~:not([hidden]){margin-top:3px}
+.next-actions>:not([hidden])~:not([hidden]){margin-left:6px}
+.vp-panel-head>:not([hidden])~:not([hidden]){margin-left:10px}
+.vp-option>:not([hidden])~:not([hidden]){margin-top:2px}
+.vp-speeds>:not([hidden])~:not([hidden]){margin-left:6px}
+.vp-speeds>*{margin-bottom:6px}
+.vp-prefs>:not([hidden])~:not([hidden]){margin-top:12px}
+.vp-ep-art::before{content:"";display:block;width:auto;padding-top:56.25%}
+.vp-ep-text>:not([hidden])~:not([hidden]){margin-top:2px}
+.vp-loading>:not([hidden])~:not([hidden]){margin-left:12px}
+.vp-tools>:not([hidden])~:not([hidden]){margin-left:2px}
+@media (orientation: landscape) and (max-height: 550px){.vp-tool>:not([hidden])~:not([hidden]){margin-left:4px}
+.vp-center>:not([hidden])~:not([hidden]){margin-left:80px}}
+@media (min-width: 900px){body.video-mode .topbar>:not([hidden])~:not([hidden]){margin-left:28px}
+body.video-mode #main-nav>:not([hidden])~:not([hidden]){margin-left:4px}
+.kind-head>:not([hidden])~:not([hidden]){margin-left:14px}
+.genre-pick>:not([hidden])~:not([hidden]){margin-left:10px}
+.bb-frame::before{display:none}
+.bb-actions>:not([hidden])~:not([hidden]){margin-left:12px}
+.v-track>:not([hidden])~:not([hidden]){margin-left:10px}
+.tp-main>:not([hidden])~:not([hidden]){margin-left:20px}
+.tp-actions>:not([hidden])~:not([hidden]){margin-left:10px}
+.tp-actions>*{margin-bottom:10px}
+.ep-open>:not([hidden])~:not([hidden]){margin-top:18px}
+.vp-top>:not([hidden])~:not([hidden]){margin-left:14px}}
+.hv-frame::before{content:"";display:block;width:auto;padding-top:56.25%}
+.hv-body>:not([hidden])~:not([hidden]){margin-top:9px}
+.hv-actions>:not([hidden])~:not([hidden]){margin-left:8px}
+.round.push:not(#z){margin-left:auto}
+.tp-skips>:not([hidden])~:not([hidden]){margin-left:8px}
+.tp-skips>*{margin-bottom:8px}
+.skip-toast>:not([hidden])~:not([hidden]){margin-left:10px}
+.tp-hero::before{content:"";display:block;width:auto;padding-top:120%}
+.tp-art::before{display:none}
+.tp-skips>:not([hidden])~:not([hidden]){margin-left:10px}
+.tp-skips>*{margin-bottom:10px}
+.tp-skips-check:not(#z){margin-left:auto}
+.tp-genres>:not([hidden])~:not([hidden]){margin-left:6px}
+.tp-genres>*{margin-bottom:6px}
+.ep-bar>:not([hidden])~:not([hidden]){margin-left:10px}
+.ep-blocks>:not([hidden])~:not([hidden]){margin-left:6px}
+.ep-tools>:not([hidden])~:not([hidden]){margin-left:6px}
+.ep-tools:not(#z){margin-left:auto}
+.ep-open>:not([hidden])~:not([hidden]){margin-top:9px}
+.ep-text>:not([hidden])~:not([hidden]){margin-top:3px}
+@media (min-width: 900px){.tp-hero::before{content:"";display:block;width:auto;padding-top:56.25%}
+.ep-open>:not([hidden])~:not([hidden]){margin-top:9px}}
+@media (min-width: 900px){.tp-hero::before{content:"";display:block;width:auto;padding-top:43.478%}}
+.vp-prefs .check>:not([hidden])~:not([hidden]){margin-left:14px}
+.skip-toast>:not([hidden])~:not([hidden]){margin-left:14px}
+@media (max-width: 899px) and (max-height: 520px){.bb-frame{width:calc(calc(100vh - var(--top) - var(--chips) - 34px) * 0.6667)}
+.video-skeleton .sk-billboard{width:calc(60vh * 0.6667)}
+.who-wrap>:not([hidden])~:not([hidden]){margin-top:14px}}
+@media (max-width: 899px){.video-nav button>:not([hidden])~:not([hidden]){margin-top:4px}
+.bb-phone .bb-frame::before{display:none}
+.bb-phone .bb-actions>:not([hidden])~:not([hidden]){margin-left:14px}
+.bb-dots>:not([hidden])~:not([hidden]){margin-left:8px}
+.genre-pick>:not([hidden])~:not([hidden]){margin-left:6px}
+.row-link>:not([hidden])~:not([hidden]){margin-left:4px}
+.v-track>:not([hidden])~:not([hidden]){margin-left:8px}
+.t-sub>:not([hidden])~:not([hidden]){margin-left:4px}
+.ex-kinds>:not([hidden])~:not([hidden]){margin-left:8px}
+.ac-id>:not([hidden])~:not([hidden]){margin-top:12px}
+.ac-row>:not([hidden])~:not([hidden]){margin-left:12px}
+#title-content.phone .tp-hero::before{display:none}
+.tp-acts>:not([hidden])~:not([hidden]){margin-left:36px}
+.tp-act>:not([hidden])~:not([hidden]){margin-top:8px}
+.tp-tabs>:not([hidden])~:not([hidden]){margin-left:28px}
+.tp-bar>:not([hidden])~:not([hidden]){margin-left:14px}
+.tp-bar:not(#z){margin-top:auto}
+.sk-billboard::before{display:none}}
+.tp-rating>:not([hidden])~:not([hidden]){margin-top:6px}
+.tp-rate-row>:not([hidden])~:not([hidden]){margin-left:10px}
+.tp-rate-row>*{margin-bottom:2px}
+.tp-dist-row>:not([hidden])~:not([hidden]){margin-left:8px}
+.tp-dist-n>:not([hidden])~:not([hidden]){margin-left:2px}
+.tp-rate-row>:not([hidden])~:not([hidden]){margin-left:8px}
+@media (max-width: 899px){.tp-acts>:not([hidden])~:not([hidden]){margin-left:32px}
+.ab-head>:not([hidden])~:not([hidden]){margin-left:6px}
+.tp-seasons>:not([hidden])~:not([hidden]){margin-left:8px}}
+.manage-back>:not([hidden])~:not([hidden]){margin-left:4px}
+@media (max-width: 899px){.ex-tabs>:not([hidden])~:not([hidden]){margin-left:24px}
+.ex-sort>:not([hidden])~:not([hidden]){margin-left:10px}}
+@media (min-width: 900px){.ex-tabs>:not([hidden])~:not([hidden]){margin-left:28px}
+.ex-sort>:not([hidden])~:not([hidden]){margin-left:12px}}
+.dl-space>:not([hidden])~:not([hidden]){margin-left:28px}
+.dl-space>*{margin-bottom:8px}
+.dl-text>:not([hidden])~:not([hidden]){margin-top:4px}
+.dl-actions>:not([hidden])~:not([hidden]){margin-left:8px}
+.dl-actions>*{margin-bottom:8px}
+#music-player .music-track-actions>:not([hidden])~:not([hidden]){margin-left:12px}

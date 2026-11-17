@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/boot.css">
+  <script src="/boot.js"></script>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#121212">
+  <meta name="description" content="Film, serie, anime e musica nella rete di casa.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/music-app.css">
+  <link rel="stylesheet" href="/video-app.css">
+  <link rel="stylesheet" href="/downloads.css">
+  <link rel="stylesheet" href="/music-premium.css">
+  <link rel="stylesheet" href="/tv-controls.css">
+  <title>Apollon</title>
+  <script src="/app.js" type="module"></script>
+</head>
+<body class="video-mode" data-page="home">
+  <div id="apollon-intro" class="apollon-intro" role="status" aria-label="Apro Apollon">
+    <div class="apollon-lockup"><img class="apollon-logo" src="/icon.svg" alt="" width="144" height="144"><strong class="apollon-wordmark">Apollon</strong></div>
+    <p id="apollon-boot-status" class="apollon-boot-status"></p>
+    <button id="apollon-boot-retry" class="apollon-boot-retry" hidden>Riprova</button>
+  </div>
+  <a class="skip" href="#main">Vai al contenuto</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Apollon, pagina iniziale"><img class="b-video" src="/icon.svg" alt="" width="36" height="36"><img class="b-music" src="/icon-music.svg" alt="" width="36" height="36" hidden><span class="b-video">Apollon</span><span class="b-music" hidden>Apollon Musica</span></a>
+    <nav id="main-nav" aria-label="Navigazione principale">
+      <button data-page="home" class="nav-home" aria-pressed="false">Home</button>
+      <button data-page="home" class="nav-video mode-link" aria-pressed="false"><svg class="lk-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg><span>Anime e film</span></button>
+      <button data-page="anime" class="nav-kind" aria-pressed="false">Anime</button>
+      <span class="nav-sep" aria-hidden="true"></span>
+      <button data-page="film" class="nav-kind" aria-pressed="false">Film</button>
+      <button data-page="series" class="nav-kind" aria-pressed="false">Serie TV</button>
+      <button id="genres-open" class="nav-genres" aria-haspopup="dialog">Generi</button>
+      <button data-page="novita" class="nav-wide" aria-pressed="false">Novità</button>
+      <button data-page="lista" class="nav-wide" aria-pressed="false">La mia lista</button>
+      <button data-page="scaricati" class="nav-wide" aria-pressed="false">Scaricati</button>
+      <button data-page="music" class="nav-music mode-link" aria-pressed="false"><svg class="lk-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Musica</span></button>
+    </nav>
+    <div class="top-tools">
+      <button data-page="music" class="video-tool tools-music mode-link" aria-pressed="false"><svg class="lk-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Musica</span></button>
+      <button id="top-search" class="icon-button video-tool" aria-label="Cerca un titolo"></button>
+      <button id="tv-toggle" class="quiet" aria-pressed="false" title="Elementi grandi e comandi con le frecce">Modalità TV</button>
+      <label class="profile-label"><span>Chi guarda</span><select id="profile" aria-label="Profilo"></select></label>
+      <button id="add-profile" class="icon-button" aria-label="Aggiungi un profilo">+</button>
+      <button id="avatar-button" class="avatar-button video-tool" aria-haspopup="dialog" aria-label="Profilo e impostazioni"></button>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <div id="loading" class="video-skeleton" role="status"><span class="sr-only">Apro la raccolta</span><div class="sk sk-billboard"></div><div class="sk sk-line"></div><div class="sk-row"><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span></div><div class="sk sk-line"></div><div class="sk-row"><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span><span class="sk sk-card"></span></div></div>
+    <section id="video-page" hidden>
+      <div id="video-view" class="video-view"></div>
+      <p id="scan-note" class="muted footnote"></p>
+    </section>
+    <section id="music-page" hidden>
+      <form id="music-login" class="panel login-panel" hidden><h2>La musica non è ancora collegata</h2><p>Si collega una volta sola, sul telefono della musica: da quel momento si apre da sola per tutta la famiglia, senza utente né password.</p><p class="muted">Chi ha la chiave di casa lo fa da <a href="#manage" id="music-go-manage">Gestisci la raccolta → Collega la musica</a>, oppure scrivendo utente e password di Navidrome in <code>config.json</code> (vedi la guida).</p><h3 class="login-more">Oppure entra solo su questo dispositivo</h3><label>Utente di Navidrome<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">Accedi alla musica</button><p class="muted">L’accesso dura fino a 8 ore. La password non viene salvata da Apollon.</p></form>
+      <div id="music-content" class="music-app" hidden>
+        <nav id="music-nav" aria-label="Sezioni della musica"><button data-section="home" aria-pressed="true"><span class="nav-icon" data-icon="home"></span><span>Home</span></button><button data-section="search" aria-pressed="false"><span class="nav-icon" data-icon="search"></span><span>Cerca</span></button><button data-section="library" aria-pressed="false"><span class="nav-icon" data-icon="library"></span><span>La tua libreria</span></button><button data-section="create" aria-haspopup="dialog"><span class="nav-icon" data-icon="plus"></span><span>Crea</span></button></nav>
+        <aside id="music-side" class="music-side" aria-label="La tua libreria, sempre a portata"></aside>
+        <div class="music-main">
+          <div id="music-top" class="music-top" hidden><button id="music-back" class="icon-button" aria-label="Indietro"><span class="nav-icon" data-icon="back"></span></button><strong id="music-top-title"></strong></div>
+          <div id="music-search-field" class="music-search-field"><div class="section-top-slot"></div><label class="search"><span class="nav-icon" data-icon="search"></span><span class="sr-only">Cerca musica</span><input id="music-search" type="search" placeholder="Cosa vuoi ascoltare?" autocomplete="off"></label></div>
+          <div id="music-breadcrumb" class="actions"></div><div id="music-results" class="catalog albums"></div><button id="more-albums" class="secondary" hidden>Altri album</button>
+        </div>
+        <aside id="music-now" class="music-now" aria-label="In riproduzione" hidden></aside>
+      </div>
+      <a id="music-server-link" class="server-link" hidden>Apri il telefono della musica</a>
+    </section>
+    <section id="manage-page" hidden>
+      <button id="manage-back" class="manage-back" type="button"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Indietro</span></button>
+      <div class="page-title"><div><p class="welcome">Un posto per ogni cosa.</p><h1>Gestisci la raccolta</h1><p class="muted">Carica e sistema i file. Quelli tolti restano nel cestino.</p></div><button id="logout" class="secondary" hidden>Chiudi l’accesso</button></div>
+      <form id="admin-login" class="panel login-panel"><h2>La chiave di casa</h2><p>Serve soltanto per modificare i file.</p><label>Chiave di casa<input name="key" type="password" autocomplete="current-password" required></label><button class="primary" type="submit">Apri la gestione</button></form>
+      <div id="admin-content" hidden>
+        <form id="music-link" class="panel"><h2>Collega la musica</h2><p id="music-link-state" class="muted" role="status"></p><div id="music-link-fields"><p class="muted">Scrivi una volta sola utente e password di Navidrome. Da quel momento la musica si apre da sola per tutta la famiglia, senza chiedere niente. La password resta soltanto su questo server.</p><label>Utente di Navidrome<input name="username" autocomplete="off" required></label><label>Password di Navidrome<input name="password" type="password" autocomplete="new-password" required></label><button class="primary" type="submit">Collega la musica</button></div><button id="music-unlink" class="secondary" type="button" hidden>Scollega la musica</button></form>
+        <div id="space" class="space-row"></div>
+        <div class="manage-toolbar"><label>Raccolta<select id="root"></select></label><button id="refresh-index" class="secondary">Aggiorna la raccolta</button><button id="retry-metadata" class="quiet">Riprova le anteprime</button><button id="new-folder" class="quiet">Nuova cartella</button><button id="trash-open" class="quiet">Apri il cestino</button></div>
+        <div class="panel upload-panel"><form id="upload-form"><label>Aggiungi file<input type="file" name="files" multiple required accept="video/*,audio/*,.mkv,.avi,.srt,.ass,.vtt,.flac,.jpg,.png"></label><button class="primary" type="submit">Carica qui</button></form><progress id="upload-progress" max="100" value="0" hidden aria-label="Caricamento"></progress><p id="upload-note" class="muted">I file esistenti non vengono sovrascritti. Lascia aperta questa pagina durante il caricamento.</p></div>
+        <div class="file-heading"><button id="parent-folder" class="quiet">↑ Cartella precedente</button><strong id="current-path"></strong></div><div class="file-scroll"><table class="file-table"><thead><tr><th>Nome</th><th>Dimensione</th><th>Azioni</th></tr></thead><tbody id="files-list"></tbody></table></div>
+        <details class="panel"><summary>Sistema titoli, stagioni, copertine e generi</summary><form id="edit-form" class="edit-form"><label>Titolo da sistemare<select id="edit-item" required></select></label><label>Nome da mostrare<input id="edit-title" required maxlength="150"></label><label>Nome della serie<input id="edit-series" maxlength="150" placeholder="Lascia vuoto per un film singolo"></label><div class="two-columns"><label>Stagione (0 per gli speciali)<input id="edit-season" type="number" min="0" max="999" step="1" value="1" required></label><label>Episodio<input id="edit-episode" type="number" min="0" max="9999" step="1" value="1" required></label></div><label>Copertina dalla raccolta<input id="edit-image" maxlength="1500" aria-describedby="image-help"></label><p id="image-help" class="muted">Carica prima un'immagine JPG o PNG con &ldquo;Aggiungi file&rdquo;, poi scrivi qui il suo percorso dentro la raccolta del video. Lascia vuoto per l'anteprima automatica.</p><label>Applica nome serie, copertina e generi a<select id="edit-scope"><option value="episode">Solo questo titolo</option><option value="season">Tutta la stagione (anche il numero stagione)</option><option value="series">Tutta la serie</option></select></label><p class="muted">Il titolo dell'episodio, il suo numero e la sigla cambiano solo per il titolo scelto.</p><label>Generi, separati da virgola<input id="edit-genres" placeholder="Avventura, Commedia"></label><button class="primary" type="submit">Salva le modifiche</button></form></details>
+        <details id="media-extras" class="panel"><summary>Versioni leggere e copertine</summary>
+          <h3>Versioni leggere (480p)</h3>
+          <p class="muted">Una copia più piccola dei video, per guardare con meno dati quando la connessione è lenta o sei fuori casa. Si prepara una alla volta, in sottofondo, e l’originale non viene mai toccato.</p>
+          <p id="versions-status" role="status">Controllo lo spazio occupato…</p>
+          <div class="actions"><button id="versions-prepare" class="secondary" type="button">Prepara la versione leggera del titolo scelto in «Sistema titoli»</button><button id="versions-clear" class="quiet" type="button">Elimina versioni leggere</button></div>
+          <h3>Copertine</h3>
+          <p id="music-art-status" class="muted" role="status"></p>
+          <label class="check"><input id="online-art-enabled" type="checkbox">Cerca copertine ufficiali su internet</label>
+          <p class="muted">Spento all’inizio. Se lo accendi, Apollon manda soltanto il titolo (e l’artista, per gli album) ad AniList, iTunes e MusicBrainz per scaricare la copertina ufficiale e la salva qui. Non invia mai i tuoi file. Le copertine dentro ai file e le immagini accanto ai video hanno sempre la precedenza.</p>
+        </details>
+        <details id="art-panel" class="panel"><summary>Locandina, sfondo e descrizione</summary><div id="art-editor" class="art-editor"><p class="muted">Scegli un titolo in «Sistema titoli» qui sopra.</p></div></details>
+        <details class="panel"><summary>Salta riassunto, sigla e finale negli anime</summary>
+          <p>Scegli un episodio in ?Sistema titoli? qui sopra. L'analisi cerca le sigle ripetute nella sua stagione, sul dispositivo dove gira Apollon, una alla volta.</p>
+          <div class="actions"><button id="skip-analyze" class="primary" type="button">Analizza la stagione</button><button id="skip-refresh" class="secondary" type="button">Aggiorna i risultati</button></div>
+          <p id="skip-status" role="status" class="muted">Scegli una stagione da analizzare.</p><p id="skip-sources" class="muted"></p>
+          <form id="skip-edit-form" class="edit-form"><h3>Correggi i tempi in secondi</h3><p>Compila inizio e fine. Lascia entrambi vuoti per disattivare quel salto. Le tue correzioni hanno sempre la precedenza.</p>
+<div class="two-columns"><label>Inizio riassunto<input id="recap-start" type="number" min="0" max="86400" step="0.01"></label><label>Fine riassunto<input id="recap-end" type="number" min="0" max="86400" step="0.01"></label></div>
+<div class="two-columns"><label>Inizio sigla<input id="opening-start" type="number" min="0" max="86400" step="0.01"></label><label>Fine sigla<input id="opening-end" type="number" min="0" max="86400" step="0.01"></label></div>
+<div class="two-columns"><label>Inizio sigla finale<input id="ending-start" type="number" min="0" max="86400" step="0.01"></label><label>Fine sigla finale<input id="ending-end" type="number" min="0" max="86400" step="0.01"></label></div>
+<div class="two-columns"><label>Inizio anteprima<input id="preview-start" type="number" min="0" max="86400" step="0.01"></label><label>Fine anteprima<input id="preview-end" type="number" min="0" max="86400" step="0.01"></label></div>
+          <label class="check"><input id="skip-same-opening" type="checkbox">Correggi anche gli episodi della stagione con la stessa sigla riconosciuta</label><p class="muted">Ogni episodio mantiene il proprio punto di inizio: una scena prima della sigla non viene tagliata.</p><button class="primary" type="submit">Salva i tempi</button></form>
+          <form id="skip-settings" class="edit-form"><h3>Aiuto facoltativo AniSkip</h3><label class="check"><input id="aniskip-enabled" type="checkbox">Usa AniSkip quando analizzi una stagione</label><p class="muted">Spento all'inizio. Se lo accendi, escono soltanto l'ID MyAnimeList e il numero episodio; nessun file viene inviato. Serve Internet. L'analisi locale funziona anche senza.</p><label>ID MyAnimeList per questa stagione<input id="aniskip-mal" type="number" min="1" max="100000000" step="1"></label><p class="muted">Usa l'ID della stagione corretta; gli episodi devono seguire la numerazione MyAnimeList.</p><button class="secondary" type="submit">Salva la scelta AniSkip</button></form>
+        </details>
+      </div>
+    </section>
+    <nav id="video-nav" class="video-nav" aria-label="Sezioni dei video"><button data-page="home" aria-pressed="false"><span class="nav-icon" data-vicon="home"></span><span>Home</span></button><button data-page="lista" aria-pressed="false"><span class="nav-icon" data-vicon="mylist"></span><span>La mia lista</span></button><button data-page="esplora" aria-pressed="false"><span class="nav-icon" data-vicon="grid"></span><span>Esplora</span></button><button data-page="scaricati" aria-pressed="false"><span class="nav-icon" data-vicon="save"></span><span>Scaricati</span></button><button data-page="account" aria-pressed="false"><span class="nav-icon" data-vicon="people"></span><span>Account</span></button></nav>
+    <p id="demo-notice" class="demo-notice" hidden>Versione di prova: tutti i video e i suoni sono generati al computer. Non ci sono file personali.</p>
+    <footer><span>Apollon · Solo nella tua rete</span><div><a id="other-library" hidden>Apri l’altra raccolta</a><button id="install" class="quiet" hidden>Installa Apollon</button><button id="help-open" class="quiet">Come si usa</button></div></footer>
+  </main>
+  <dialog id="music-player" class="music-player" aria-modal="true" aria-labelledby="full-title">
+    <div class="dialog-heading"><span class="welcome">In ascolto</span><button class="close-dialog icon-button" aria-label="Chiudi il lettore musicale" autofocus>×</button></div>
+    <div class="mobile-player-tabs segmented"><button id="view-cover" aria-pressed="true">Copertina</button><button id="view-lyrics" aria-pressed="false">Testo</button></div>
+    <div class="full-layout">
+      <section class="full-record"><img id="full-cover" src="/music-cover.svg" alt="Copertina del brano" width="600" height="600"><h2 id="full-title">Nessun brano</h2><p id="full-artist" class="muted"></p></section>
+      <section class="full-words" aria-label="Testo del brano"><div class="section-heading"><h2>Testo</h2><p id="lyrics-note" class="muted"></p></div><div id="lyrics-lines" class="lyrics-lines" tabindex="0" aria-label="Righe del testo"></div></section>
+    </div>
+    <div class="full-controls"><label class="audio-seek"><span id="full-time">0:00</span><input id="full-seek" aria-label="Posizione nel lettore" type="range" min="0" max="100" value="0" step="0.1"><span id="full-duration">0:00</span></label><div class="actions"><button id="full-prev" class="icon-button" aria-label="Brano precedente nel lettore">⏮</button><button id="full-toggle" class="primary" aria-label="Riproduci nel lettore">▶</button><button id="full-next" class="icon-button" aria-label="Brano successivo nel lettore">⏭</button></div></div>
+    <p id="music-load-status" class="music-load-status" role="status" hidden></p>
+    <div class="music-track-actions"><button id="full-like" class="quiet" aria-pressed="false">♡ Mi piace</button><button id="full-menu" class="quiet">Opzioni brano</button></div>
+    <section class="music-options" aria-labelledby="music-options-title">
+      <h3 id="music-options-title">Il tuo ascolto</h3>
+      <label class="music-setting"><span>Dissolvenza<small>Un passaggio morbido tra i brani</small></span><select id="crossfade"><option value="0">Spenta</option><option value="2">2 secondi</option><option value="4">4 secondi</option><option value="8">8 secondi</option><option value="12">12 secondi</option></select></label>
+      <label class="music-setting"><span>Timer<small>La musica si ferma da sola</small></span><select id="sleep-timer"><option value="0">Spento</option><option value="15">15 minuti</option><option value="30">30 minuti</option><option value="60">60 minuti</option><option value="end">Fine brano</option></select></label>
+      <label class="music-setting"><span>Volume uniforme<small>Meno differenze tra un brano e l’altro</small></span><input id="normalize-volume" class="music-switch" type="checkbox" role="switch"></label>
+      <label class="music-setting player-vibration"><span>Vibrazione breve<small>Una conferma quando tocchi</small></span><input id="music-vibration" class="music-switch" type="checkbox" role="switch" checked></label>
+    </section>
+    <details id="equalizer-options" class="equalizer-options"><summary>Equalizzatore</summary><fieldset id="equalizer-controls"><legend>Come vuoi ascoltare?</legend><label>Suono<select id="equalizer-preset"></select></label><div id="equalizer-bands" class="equalizer-bands"></div></fieldset><p id="equalizer-note" class="muted" role="status">Il volume può scendere un po’ per mantenere il suono pulito.</p></details>
+    <div id="player-cards" class="player-cards"><section class="player-card"><h3>Ascolta in casa</h3><button id="music-devices" class="secondary">Dispositivi di casa</button><button id="music-together" class="secondary">Ascoltiamo insieme</button></section>
+      <section class="player-card"><h2>Testo</h2><button id="lyrics-preview" class="lyrics-preview quiet" aria-label="Apri il testo a schermo intero">Cerco il testo…</button></section>
+      <section class="player-card"><h2>Artista</h2><div id="player-artist"></div><button id="artist-radio" class="secondary" disabled>Radio artista</button></section>
+      <section class="player-card"><h2>Dati del brano</h2><dl id="track-facts" class="track-facts"></dl><button id="retry-player-details" class="quiet" hidden>Riprova i dati del brano</button></section>
+      <section class="player-card"><h2>Prossimi in coda</h2><ol id="queue-preview" class="track-list"></ol><button id="player-open-queue" class="secondary">Apri la coda</button></section>
+    </div>
+  </dialog>
+  <dialog id="title-dialog" class="title-dialog" aria-labelledby="title-name"><div id="title-content" class="title-content"></div></dialog>
+  <dialog id="about-dialog" class="about-dialog" aria-labelledby="about-title"><div id="about-content" class="about-content"></div></dialog>
+  <dialog id="video-dialog" class="video-dialog" aria-labelledby="player-title">
+    <div id="video-stage" class="vp-stage">
+      <div id="vp-loading" class="vp-loading" role="status" hidden><i aria-hidden="true"></i><span>Caricamento del video…</span></div>
+      <button id="vp-unlock" class="vp-unlock" hidden>Sblocca schermo</button>
+      <video id="video" tabindex="0" playsinline preload="metadata" poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></video>
+      <div id="vp-layer" class="vp-layer">
+        <div class="vp-top"><button id="close-player" class="vp-icon" aria-label="Chiudi il video"></button><div class="vp-heading"><h2 id="player-title"></h2><p id="vp-episode"></p></div></div>
+        <div class="vp-center"><button id="vp-back" class="vp-icon vp-jump" aria-label="Indietro di 10 secondi"></button><button id="vp-toggle" class="vp-icon vp-play" aria-label="Riproduci"></button><button id="vp-forward" class="vp-icon vp-jump" aria-label="Avanti di 10 secondi"></button></div>
+        <div class="vp-bottom">
+          <div class="vp-seekrow"><span id="vp-time">0:00</span><input id="vp-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posizione nel video"><span id="vp-left">0:00</span></div>
+          <div id="vp-preview" class="vp-preview" hidden><div id="vp-preview-image" hidden></div><strong id="vp-preview-time">0:00</strong></div>
+          <div class="vp-tools"><button id="vp-next" class="vp-tool" hidden>Episodio successivo</button><button id="vp-episodes" class="vp-tool" hidden>Episodi</button><button id="vp-lang" class="vp-tool">Audio e sottotitoli</button><button id="vp-speed" class="vp-tool">Velocità</button><button id="vp-lock" class="vp-tool">Blocca</button><button id="vp-settings" class="vp-tool">Impostazioni</button><button id="fullscreen" class="vp-tool">Schermo intero</button></div>
+        </div>
+        <div class="player-tools"><button id="skip-recap" class="vp-skip" hidden>Salta riassunto</button><button id="skip-intro" class="vp-skip" hidden>Salta sigla</button><button id="skip-ending" class="vp-skip" hidden>Salta sigla finale</button><button id="next-episode" class="vp-skip" hidden>Prossimo episodio</button></div>
+        <div id="skip-toast" class="skip-toast" role="status" hidden><span id="skip-toast-text"></span><button id="skip-undo" type="button">Annulla</button></div>
+        <div id="next-card" class="next-card" hidden><img id="next-thumb" alt="" width="160" height="90"><div class="next-copy"><small>Prossimo episodio fra <b id="next-count">10</b> s</small><strong id="next-name"></strong><div class="next-actions"><button id="next-now" class="primary">Guarda subito</button><button id="next-cancel" class="vp-tool">Resta qui</button></div></div></div>
+        <section id="vp-panel" class="vp-panel" hidden aria-labelledby="vp-panel-title"><div class="vp-panel-head"><h3 id="vp-panel-title"></h3><button id="vp-panel-close" class="vp-icon" aria-label="Chiudi il pannello"></button></div><div id="vp-panel-body" class="vp-panel-body"></div>
+          <div id="vp-prefs" class="vp-prefs" hidden><label class="check"><input id="autoskip" type="checkbox"><span>Salta da solo sigle e riassunti<small>Solo i tratti riconosciuti con certezza. Spento: compare il pulsante «Salta» e decidi tu</small></span></label><label class="check"><input id="autonext" type="checkbox" checked>Passa da solo all’episodio successivo</label><label class="check"><input id="lightmode" type="checkbox" checked><span>Versione leggera fuori casa o con rete lenta<small>Usa la copia più piccola quando la rete non basta; a casa resta l’originale</small></span></label></div></section>
+      </div>
+      <p id="video-error" class="error vp-error" hidden></p>
+    </div>
+    <p id="video-info" class="muted vp-info"></p>
+  </dialog>
+  <dialog id="who-dialog" class="who-dialog" aria-labelledby="who-title"><div class="who-wrap"><img src="/icon.svg" alt="" width="44" height="44" class="who-logo"><h1 id="who-title">Chi guarda?</h1><p id="who-hint" class="who-hint" hidden>Ognuno ha i suoi visti e il suo punto di ripresa. Tocca «Aggiungi» e scrivi un nome.</p><div id="who-list" class="who-list"></div><button id="who-manage" class="who-manage" aria-pressed="false">Gestisci profili</button></div></dialog>
+  <dialog id="video-sheet" class="video-sheet" aria-labelledby="video-sheet-title"><div class="dialog-heading"><h2 id="video-sheet-title"></h2><button class="close-dialog icon-button" aria-label="Chiudi il menu">×</button></div><div id="video-sheet-body" class="sheet-list"></div></dialog>
+  <dialog id="queue-dialog" aria-label="Coda di riproduzione"><div class="dialog-heading"><h2>La coda di ascolto</h2><button class="close-dialog icon-button" aria-label="Chiudi">×</button></div><div class="actions"><button id="save-playlist" class="primary">Salva come playlist</button><button id="clear-queue" class="secondary">Svuota la coda</button><button id="shuffle-queue" class="secondary">Mescola la coda</button><label>Ripeti<select id="repeat-queue"><option value="off">Non ripetere</option><option value="one">Un brano</option><option value="all">Tutta la coda</option></select></label></div><p id="radio-state" class="muted">Ascolto dalla coda</p><button id="stop-radio" class="quiet">Ferma la radio</button><ol id="queue-list" class="track-list"></ol></dialog>
+  <dialog id="trash-dialog"><div class="dialog-heading"><h2>Il cestino</h2><button class="close-dialog icon-button" aria-label="Chiudi">×</button></div><p class="muted">I file qui continuano a occupare spazio. Puoi rimetterli al loro posto.</p><div id="trash-list"></div></dialog>
+  <dialog id="input-dialog" aria-labelledby="input-title"><form id="input-form"><div class="dialog-heading"><h2 id="input-title"></h2><button type="button" class="close-dialog icon-button" aria-label="Annulla">×</button></div><p id="input-description"></p><label id="input-root-label" hidden>Raccolta di destinazione<select id="input-root"></select></label><label id="input-label">Nome<input id="input-value" required></label><div class="actions"><button id="input-submit" class="primary" type="submit">Salva</button><button type="button" class="close-dialog secondary">Annulla</button></div></form></dialog>
+  <dialog id="help-dialog"><div class="dialog-heading"><h2>Benvenuto a casa</h2><button class="close-dialog icon-button" aria-label="Chiudi">×</button></div><div class="help-copy"><p><b>Anime, film e serie TV.</b> Scegli il tuo profilo in alto: ognuno ha i propri visti e il proprio punto di ripresa. Apri un titolo per guardarlo.</p><p><b>Musica.</b> Apri il telefono della musica, accedi con Navidrome e scegli un mood, un genere o un album. Puoi continuare a sfogliare mentre ascolti.</p><p><b>TV.</b> Attiva “Modalità TV”. Usa le frecce per spostarti, OK per scegliere, Indietro o Esc per chiudere. Restano disponibili i video via DLNA.</p><p><b>Salti degli anime.</b> Sigla, riassunto e finale si trovano da soli: Apollon confronta gli episodi di una stagione in sottofondo, senza che tu debba guardarli o ascoltarli. Nel lettore compare «Salta sigla» (o «Salta riassunto», «Prossimo episodio»); se in Impostazioni lasci acceso «Salta in automatico», salta da solo e per due secondi puoi toccare «Annulla».</p><p><b>Qualità.</b> Nel lettore, in Impostazioni, scegli Automatica, Originale o Risparmio dati (480p). La versione leggera si prepara dalla pagina della serie, una volta sola, e serve quando la connessione è lenta o sei fuori casa. Il punto in cui sei arrivato si ricorda per ogni profilo.</p><p><b>Gestione.</b> La chiave di casa permette di aggiungere e spostare i file. “Metti nel cestino” li conserva e puoi ripristinarli.</p><p><b>Installazione.</b> Nel browser puoi aggiungere un collegamento alla schermata iniziale. L’installazione completa PWA richiede HTTPS o localhost: sui normali indirizzi HTTP di casa usa il collegamento.</p><p><b>Compatibilità.</b> Nessun video viene ricodificato. Se il browser non legge il formato, usa il lettore DLNA/VLC della TV. I sottotitoli SRT/ASS accanto al video vengono adattati al browser; gli stili avanzati ASS non vengono conservati.</p><p><b>Cast.</b> Non c’è Cast integrato: puoi usare la duplicazione schermo o il lettore DLNA della TV. Musica in sottofondo e comandi sulla schermata bloccata dipendono dal browser e dal risparmio energetico del telefono.</p></div></dialog>
+  <aside id="audio-bar" class="audio-bar" aria-label="Lettore musicale" hidden><div class="bar-track"><img id="audio-cover" src="/music-cover.svg" alt="" width="48" height="48"><button id="open-music-player" class="now-playing quiet" aria-label="Apri il lettore e il testo"><strong id="audio-title">Nessun brano</strong><span id="audio-artist" class="muted"></span><small id="mini-load-status" role="status" hidden></small></button></div><div class="bar-center"><div class="bar-buttons"><button id="audio-prev" class="icon-button" aria-label="Brano precedente">⏮</button><button id="audio-toggle" class="primary" aria-label="Riproduci musica">▶</button><button id="audio-next" class="icon-button" aria-label="Brano successivo">⏭</button></div><label class="audio-seek"><span id="audio-time">0:00</span><input id="audio-seek" aria-label="Posizione del brano" type="range" min="0" max="100" value="0"><span id="audio-duration">0:00</span></label></div><div class="bar-tools"><button id="mini-devices" class="icon-button bar-icon" aria-label="Ascolta su un dispositivo di casa" title="Dispositivi di casa"></button><button id="mini-like" class="icon-button bar-icon" aria-label="Mi piace questo brano" aria-pressed="false" title="Mi piace"></button><button id="bar-lyrics" class="quiet">Testo</button><button id="bar-queue" class="quiet">Coda</button><label class="volume">Volume<input id="volume" type="range" min="0" max="1" step="0.05" value="0.8"></label><button id="bar-now" class="icon-button bar-icon" aria-label="Pannello In riproduzione" aria-pressed="true" title="In riproduzione"></button></div><span class="mini-progress" aria-hidden="true"><span id="mini-progress-fill"></span></span><audio id="audio" preload="auto"></audio><audio id="audio-buffer" preload="auto"></audio></aside>
+  <dialog id="music-create" class="music-sheet" aria-labelledby="music-create-title"><div class="dialog-heading"><h2 id="music-create-title">Crea</h2><button class="close-dialog icon-button" aria-label="Chiudi Crea">×</button></div><div class="sheet-list"><button id="create-playlist" class="sheet-item"><span class="sheet-mark" data-icon="note"></span><span class="sheet-copy"><strong>Nuova playlist</strong><small>Comincia da zero, aggiungi i brani quando vuoi</small></span></button><button id="create-from-queue" class="sheet-item"><span class="sheet-mark" data-icon="queue"></span><span class="sheet-copy"><strong>Playlist dalla coda</strong><small>Salva quello che stai ascoltando</small></span></button><button id="create-blend" class="sheet-item"><span class="sheet-mark" data-icon="blend"></span><span class="sheet-copy"><strong>Miscela</strong><small>Unisci i gusti di due persone di casa</small></span></button><button id="music-together-page" class="sheet-item"><span class="sheet-mark" data-icon="people"></span><span class="sheet-copy"><strong>Ascoltiamo insieme</strong><small>La stessa musica su più telefoni</small></span></button><button id="music-queue-open" class="sheet-item"><span class="sheet-mark" data-icon="queue"></span><span class="sheet-copy"><strong>Apri la coda</strong><small><span id="queue-count">0</span> brani in coda</small></span></button></div></dialog>
+  <dialog id="song-menu" aria-labelledby="song-menu-title"><div class="dialog-heading"><h2 id="song-menu-title">Opzioni brano</h2><button class="close-dialog icon-button" aria-label="Chiudi opzioni brano">×</button></div><div id="song-menu-actions" class="menu-actions"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

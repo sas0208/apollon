@@ -1,0 +1,443 @@
+/* Giro E: la sezione Musica come una vera app di musica. Fondo quasi nero e neutro, superfici grigie, accento verde.
+   Tutto qui dentro vale solo per la musica (body[data-page=music]) e per il lettore; Film e Serie non cambiano. */
+body[data-page=music]{--bg:#121212;--surface:#1c1c1e;--raised:#2a2a2c;--ink:#f6f6f6;--muted:#a9a9ad;--line:#303034;--accent:#2cd46b;--accent-ink:#04140a;
+  --nav-h:64px;--ease:cubic-bezier(.4,0,.2,1);background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body[data-page=music] :focus-visible{outline:2px solid var(--accent);outline-offset:3px;box-shadow:none}
+body[data-page=music] button:hover{filter:none}
+#music-page{padding-top:0}
+#music-page .music-app{position:relative}
+#music-page h2,#music-page h3{letter-spacing:-.02em}
+
+/* Barra di Mediateca in alto: sulla musica diventa sottile, per passare a Film e Serie senza rubare spazio. */
+@media(max-width:899px){
+  body[data-page=music] .topbar{padding:calc(6px + env(safe-area-inset-top,0px)) 16px 0;gap:6px;border:0;flex-wrap:nowrap}
+  body[data-page=music] .brand span,body[data-page=music] .profile-label,body[data-page=music] #add-profile{display:none}
+  body[data-page=music] .brand img{width:26px;height:26px}
+  body[data-page=music] .topbar nav{order:0;width:auto;flex:1;justify-content:flex-start;gap:2px;overflow-x:auto;scrollbar-width:none}
+  body[data-page=music] .topbar nav button{font-size:.74rem;padding:8px 8px;min-height:34px;border-bottom-width:0;border-radius:999px;color:var(--muted)}
+  body[data-page=music] .topbar nav button[aria-pressed=true]{color:var(--ink);background:var(--raised)}
+  body[data-page=music] .top-tools{margin-left:0}
+  body[data-page=music] .top-tools .quiet{min-height:34px;min-width:34px}
+  body[data-page=music] main{padding:0 16px calc(var(--nav-h) + 24px + env(safe-area-inset-bottom,0px))}
+  body[data-page=music].has-audio main{padding-bottom:calc(var(--nav-h) + 92px + env(safe-area-inset-bottom,0px))}
+}
+
+/* Barra delle sezioni in basso: Home, Cerca, La tua libreria, Crea. */
+#music-nav{position:fixed;left:0;right:0;bottom:0;z-index:9;display:grid;grid-template-columns:repeat(4,1fr);height:calc(var(--nav-h) + env(safe-area-inset-bottom,0px));
+  padding:6px 4px env(safe-area-inset-bottom,0px);background:linear-gradient(0deg,var(--bg) 62%,#121212d9 82%,#12121200)}
+#music-nav button{background:transparent;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:2px 0;min-height:0;font-size:.68rem;font-weight:500;border-radius:8px}
+#music-nav button[aria-pressed=true]{color:var(--ink)}
+#music-nav button[aria-pressed=true] .nav-icon svg{stroke-width:2.4}
+.nav-icon{display:inline-flex;line-height:0}
+.nav-icon svg,.sheet-mark svg,.hero-icon svg,.bar-icon svg,.icon-button>svg,.section-tools svg,.library-sort svg,.chip-clear svg,.recent-query svg{width:24px;height:24px}
+#music-nav .nav-icon svg{width:25px;height:25px}
+
+/* Barra compatta in alto delle sottopagine: «‹» e il titolo, che compare quando l'intestazione sparisce. */
+.music-top{position:sticky;top:0;z-index:6;display:flex;align-items:center;gap:8px;height:52px;margin:0 -16px -52px;padding:0 8px;background:transparent;transition:background-color 150ms var(--ease)}
+.music-top strong{opacity:0;transition:opacity 150ms var(--ease);font-size:1rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.music-top.solid{background:var(--top-color,var(--raised))}
+.music-top.solid strong{opacity:1}
+.music-top .icon-button{background:#0006;border-radius:50%;width:36px;height:36px;min-width:36px;min-height:36px;padding:6px;color:var(--ink)}
+.music-top.solid .icon-button{background:transparent}
+
+/* Campo di ricerca grande: solo nella sezione Cerca. */
+body:not([data-music-section=search]) #music-search-field{display:none}
+.music-search-field{padding-top:12px}
+.music-search-field .search{display:flex;flex-direction:row;align-items:center;gap:10px;width:100%;background:#f2f2f2;color:#141414;border-radius:8px;padding:0 12px;margin:12px 0 18px}
+.music-search-field .search input{background:transparent;border:0;color:#141414;font-weight:600;font-size:1rem;padding:12px 0;min-height:48px}
+.music-search-field .search input::placeholder{color:#555}
+.music-search-field .search input:focus-visible{outline:0}
+.music-search-field .search:focus-within{box-shadow:0 0 0 2px var(--accent)}
+
+/* Testate di sezione: avatar, titolo, strumenti. */
+.section-top{display:flex;align-items:center;gap:12px;min-height:48px}
+.section-top h2{margin:0;font-size:1.45rem;font-weight:800}
+.section-tools{margin-left:auto;display:flex;gap:2px}
+.section-tools .icon-button{color:var(--ink);min-width:40px;min-height:40px;padding:8px}
+.section-tools .icon-button[aria-pressed=true]{color:var(--accent)}
+.avatar{width:34px;height:34px;min-width:34px;min-height:34px;padding:0;border-radius:50%;background:hsl(var(--avatar-hue,150) 62% 64%);color:#04140a;font-weight:800;font-size:1rem;display:inline-grid;place-items:center;flex-shrink:0}
+.avatar.small{width:44px;height:44px}
+.profile-photo{display:block;width:100%;height:100%;object-fit:cover;border-radius:50%}
+.avatar{overflow:hidden}
+
+/* Filtri a pillola. */
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap;padding:2px 0;min-width:0}
+.chips::-webkit-scrollbar,.shelf-row::-webkit-scrollbar,.library-links::-webkit-scrollbar{display:none}
+.chip,#music-page .chip.secondary{flex-shrink:0;background:var(--raised);color:var(--ink);border:0;border-radius:999px;min-height:34px;height:34px;padding:0 15px;font-size:.84rem;font-weight:500;white-space:nowrap}
+.chip[aria-pressed=true],#music-page .chip.secondary[aria-pressed=true]{background:var(--accent);color:var(--accent-ink)}
+.chip-clear,#music-page .chip.chip-clear{width:34px;padding:0;display:inline-grid;place-items:center}
+.chip-clear svg{width:16px;height:16px}
+
+/* Copertine: foto, collage 2×2 o un riquadro colorato con un segno. Mai l'icona di Mediateca. */
+.art{position:relative;display:block;width:100%;aspect-ratio:1;overflow:hidden;border-radius:4px;background:hsl(var(--art-hue,150) 22% 24%);container-type:inline-size;flex-shrink:0}
+.art>img{display:block;width:100%!important;height:100%!important;object-fit:cover;border-radius:0!important;aspect-ratio:auto!important}
+.art.collage{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.art.generated{background:linear-gradient(140deg,hsl(var(--art-hue,150) 58% 46%),hsl(calc(var(--art-hue,150) + 48) 46% 20%));display:grid;place-items:center}
+.art-glyph{color:#ffffffd9;font-size:36cqw;font-weight:800;line-height:1;letter-spacing:-.04em;text-shadow:0 2px 12px #0004}
+.art.round{border-radius:50%}
+.art.liked-art,.liked-tile .art{background:linear-gradient(140deg,#b7fbd3,#40c276 52%,#174b2d)}
+.art-frame{position:relative;display:block}
+.art-band{position:absolute;left:0;right:0;bottom:0;padding:5px 8px;font-size:.72rem;font-weight:800;color:#fff;background:linear-gradient(0deg,#000a,#0000);border-radius:0 0 4px 4px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.art-frame:before{content:"";position:absolute;inset:0 0 auto;height:4px;z-index:1;background:var(--accent);border-radius:4px 4px 0 0}
+
+/* Home: avatar e filtri, griglia rapida 2×4, scaffali. */
+.music-home{padding-top:10px}
+.home-top{display:flex;align-items:center;gap:8px;margin-bottom:14px;min-width:0}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.quick-tile{position:relative;min-width:0}
+.quick-open{display:flex;align-items:center;gap:10px;width:100%;height:56px;min-height:0;padding:0 8px 0 0;background:var(--raised);border-radius:5px;overflow:hidden;text-align:left;color:var(--ink);font-weight:700}
+.quick-open .art{width:56px;height:56px;border-radius:0}
+.quick-title{font-size:.8rem;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-width:0}
+.quick-play{position:absolute;right:6px;top:50%;translate:0 -50%;width:34px;height:34px;min-height:0;padding:0;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity 150ms var(--ease);box-shadow:0 4px 12px #0007}
+.quick-play svg{width:18px;height:18px}
+.quick-tile:hover .quick-play,.quick-play:focus-visible{opacity:1;pointer-events:auto}
+.catalog-note{border-left:3px solid var(--accent);background:#ffffff08;padding:12px 16px;margin:14px 0;border-radius:0 6px 6px 0}
+#music-page .shelf{display:block;overflow:visible;padding:0;margin:26px 0 0;min-width:0}
+.shelf-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.shelf-head h2{margin:0;font-size:1.32rem;font-weight:800}
+.shelf-head p{margin:0;font-size:.8rem}
+.shelf-head .quiet{font-size:.8rem;color:var(--muted);min-height:32px;padding:4px 0}
+.shelf-row{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px;scroll-padding:0 16px}
+.shelf-row>*{scroll-snap-align:start}
+.music-home[data-filter=mood] .shelf:not([data-shelf=mood]),.music-home[data-filter=genre] .shelf:not([data-shelf=genre]),.music-home[data-filter=playlist] .shelf:not([data-shelf=playlist]),
+.music-home:not([data-filter=all]) .quick-grid{display:none}
+
+/* Schede di copertina (scaffali, album, artisti, playlist). Battono le schede dei film. */
+#music-page .shelf-card,body[data-page=music] .shelf-card{display:flex;flex-direction:column;gap:0;width:150px;min-width:0;max-width:none;flex:0 0 150px;padding:0;background:transparent;text-align:left;border-radius:6px;color:var(--ink);font-weight:400}
+#music-page .shelf-card .art{width:150px;height:150px;box-shadow:0 6px 18px #0005}
+#music-page .shelf-card .art-frame .art{width:150px}
+#music-page .shelf-card .shelf-title,#music-page .shelf-card h3.shelf-title{margin:8px 0 2px;font-size:.86rem;font-weight:600;line-height:1.25;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#music-page .shelf-card .shelf-sub,#music-page .shelf-card .meta{color:var(--muted);font-size:.76rem;line-height:1.3;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#music-page .round-card{text-align:center;align-items:center}
+#music-page .round-card .art{border-radius:50%}
+#music-results:has(>.shelf-card){display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:20px 14px;align-items:start}
+#music-results:has(>.shelf-card) .shelf-card{width:auto;flex:none}
+#music-results:has(>.shelf-card) .shelf-card .art{width:100%;height:auto}
+#music-results>.results-heading{grid-column:1/-1;margin:8px 0 0;font-size:1.25rem}
+#music-page #music-results{display:block;min-width:0}
+#music-page #music-results:has(>.shelf-card){display:grid}
+#music-page #music-breadcrumb{display:block;margin:0}
+#music-page #music-breadcrumb:empty{display:none}
+#music-page .page-heading{font-size:1.5rem;font-weight:800;margin:14px 0 14px}
+#music-page .page-actions{margin:-4px 0 16px}
+
+/* Riquadri colorati di mood e generi: nome in alto a sinistra, copertina inclinata nell'angolo. */
+#music-page .mood-card{position:relative;overflow:hidden;display:block;height:98px;min-height:0;padding:12px;border-radius:8px;text-align:left;background:hsl(var(--tile-hue,150) 52% 36%);color:#fff;font-weight:800}
+#music-page .mood-card:after{display:none}
+.mood-card .tile-name{position:relative;z-index:1;display:block;font-size:1rem;line-height:1.15;max-width:66%}
+.mood-card .tile-count{position:relative;z-index:1;display:block;font-weight:500;font-size:.72rem;opacity:.8;margin-top:4px}
+.mood-card .art.tilt{position:absolute;right:-12px;bottom:-6px;width:44%;max-width:84px;rotate:25deg;border-radius:4px;box-shadow:0 4px 14px #0006}
+#music-page .shelf-row .mood-card{flex:0 0 150px;width:150px;height:150px}
+.shelf-row .mood-card .art.tilt{width:58%;max-width:none}
+.browse-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.browse-title{font-size:1.1rem;font-weight:800;margin:22px 0 12px}
+
+/* Cerca: ricerche recenti e risultati. */
+.search-browse,.search-suggestions{min-width:0}
+.recent-list{list-style:none;padding:0;margin:0 0 6px}
+.recent-list li{display:flex;align-items:center;gap:4px}
+.recent-query{flex:1;display:flex;align-items:center;gap:14px;background:transparent;text-align:left;padding:8px 0;font-weight:500;color:var(--ink)}
+.recent-query svg{color:var(--muted)}
+.recent-list .icon-button{color:var(--muted)}
+.search-top{display:grid;gap:18px}
+.top-result-box h2,.search-songs h2,.search-more-songs h2{font-size:1.25rem;font-weight:800;margin:4px 0 10px}
+#music-page .top-result{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;margin:0;padding:18px;border-radius:8px;background:var(--surface);text-align:left;color:var(--ink)}
+#music-page .top-result .art{width:96px;height:96px;margin-bottom:12px;box-shadow:0 8px 24px #0006}
+#music-page .top-result.round-card .art{border-radius:50%}
+.top-result strong{font-size:1.6rem;font-weight:800;line-height:1.15}
+.top-result small{color:var(--muted);font-size:.85rem}
+#music-page .search-result.shelf-card{margin:0}
+.search-group{margin-top:22px}
+
+/* Intestazione grande delle pagine: sfumatura dal colore della copertina, play verde. */
+.music-hero{--hero-fade:1;position:relative;margin:0 -16px;padding:60px 16px 6px;background:linear-gradient(180deg,var(--hero-color,#3a3a3e) 0%,color-mix(in srgb,var(--hero-color,#3a3a3e) 42%,var(--bg)) 58%,var(--bg) 100%);transition:background-color 150ms var(--ease)}
+.music-hero .hero-cover{width:min(62vw,250px);margin:0 auto;opacity:var(--hero-fade);transform:scale(calc(.82 + .18 * var(--hero-fade)));transform-origin:50% 100%}
+.music-hero .hero-cover .art{box-shadow:0 10px 40px #000a;border-radius:4px}
+.music-hero .hero-cover .art.round{border-radius:50%}
+.hero-text{margin-top:18px;min-width:0}
+.hero-text h2{margin:0 0 6px;font-size:1.55rem;font-weight:800;line-height:1.15;overflow-wrap:anywhere}
+.hero-kind{margin:0 0 4px;font-size:.78rem;font-weight:600;color:var(--ink)}
+.hero-sub{margin:0;font-size:.82rem;color:var(--muted)}
+.hero-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;min-height:64px}
+.hero-tools{display:flex;align-items:center;gap:2px;flex-wrap:wrap;min-width:0}
+.hero-play{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.hero-icon{background:transparent;color:var(--muted);width:44px;height:44px;min-width:44px;min-height:44px;padding:8px;border-radius:50%;display:grid;place-items:center}
+.hero-icon:hover:not(:disabled){color:var(--ink)}
+.hero-icon svg{width:26px;height:26px}
+.play-big{width:56px;height:56px;min-height:0;padding:0;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;box-shadow:0 8px 20px #0006;transition:transform 120ms var(--ease)}
+.play-big svg{width:26px;height:26px;margin-left:3px}
+.play-big:hover:not(:disabled){transform:scale(1.04);filter:brightness(1.05)}
+.hero-text-button{background:transparent;border:1px solid #ffffff55;color:var(--ink);border-radius:999px;min-height:32px;padding:4px 14px;font-size:.8rem;margin-left:6px}
+.hero-tools .download-collection{border-radius:999px;min-height:32px;padding:4px 14px;font-size:.8rem;background:transparent;border:1px solid #ffffff55;margin-left:4px}
+.playlist-edit{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.8rem;margin:2px 0 6px}
+.playlist-edit-actions{display:flex;gap:8px}
+.playlist-edit .primary,.playlist-edit .secondary{min-height:34px;padding:6px 14px;font-size:.82rem;border-radius:999px}
+
+/* Brani: copertina piccola, titolo, artista, «⋯». */
+#music-page .track-row,body[data-page=music] .track-row{border-bottom:0;padding:10px 0;gap:2px}
+#music-page .track-row .track-main{gap:12px;padding:0 4px 0 0}
+#music-page .track-row .track-main:before{display:none}
+#music-page .track-main .track-cover{width:48px;height:48px;border-radius:3px}
+#music-page .track-text strong{font-weight:500;font-size:.95rem}
+#music-page .track-text small{font-size:.8rem;margin-top:3px}
+#music-page .track-row.current .track-text strong{color:var(--accent)}
+#music-page .track-row.current{background:transparent}
+#music-page .track-row .quiet{color:var(--muted);font-size:1.1rem}
+#music-page .track-row .heart[aria-pressed=true]{color:var(--accent)}
+#music-page .playlist-recommendations{padding-top:18px}
+
+/* Scheletri grigi al posto delle scritte di caricamento. */
+.music-skeleton{display:block;padding-top:12px}
+.skeleton-block{display:block;background:linear-gradient(90deg,#232325 0%,#2e2e31 40%,#232325 80%);background-size:300% 100%;border-radius:6px;animation:music-shimmer 1.3s linear infinite}
+.skeleton-quick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:46px 0 26px}
+.skeleton-block.quick{height:56px}
+.skeleton-block.heading{height:22px;width:45%;margin-bottom:14px}
+.skeleton-shelf{display:flex;gap:14px;overflow:hidden}
+.skeleton-block.cover{width:150px;height:150px;flex-shrink:0}
+.skeleton-block.hero{width:min(62vw,250px);aspect-ratio:1;margin:48px auto 22px}
+.skeleton-row{display:flex;align-items:center;gap:12px;padding:10px 0}
+.skeleton-block.thumb{width:48px;height:48px;flex-shrink:0;border-radius:3px}
+.skeleton-block.line{height:14px;flex:1;max-width:70%}
+@keyframes music-shimmer{from{background-position:100% 0}to{background-position:-200% 0}}
+
+/* La tua libreria. */
+.library-page{padding-top:10px}
+#music-page .library-filters{margin:10px 0 4px;flex-wrap:nowrap}
+.library-find{width:100%;margin:8px 0 2px;background:var(--raised);border:0}
+.library-toolbar{display:flex;align-items:center;justify-content:space-between;margin:10px 0 2px}
+.library-sort{display:flex;flex-direction:row;align-items:center;gap:6px;color:var(--ink)}
+.library-sort select{background:transparent;border:0;color:var(--ink);font-weight:600;font-size:.84rem;padding:4px 2px;min-height:36px}
+.library-sort select option{background:var(--surface)}
+.view-toggle{display:flex}
+.view-toggle .icon-button{color:var(--muted);min-width:40px;min-height:40px;padding:8px}
+.view-toggle .icon-button[aria-pressed=true]{color:var(--ink)}
+.library-browse{display:flex;flex-direction:column;margin:4px 0 0}
+.library-row{display:flex;align-items:center;gap:12px;background:transparent;padding:6px 0;text-align:left;color:var(--ink);font-weight:400;border-radius:6px}
+.library-row .art,#music-page .library-open .art{width:64px;height:64px;border-radius:4px}
+#music-page .library-artist .library-open .art{border-radius:50%}
+.library-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.library-copy strong{font-weight:500;font-size:.98rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.library-copy small{color:var(--muted);font-size:.8rem;display:flex;align-items:center;gap:5px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.pinned-mark{display:inline-flex;color:var(--accent)}
+.pinned-mark svg{width:13px;height:13px}
+.library-links{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:8px 0 6px;padding:2px 0}
+.library-links .pill,#music-page .library-links .secondary{flex-shrink:0;min-height:32px;padding:4px 13px;font-size:.78rem;font-weight:500;border:1px solid var(--line);background:transparent;border-radius:999px;white-space:nowrap}
+#music-page .library-items{gap:0;margin-top:4px}
+#music-page .library-list{display:flex;flex-direction:column}
+#music-page .library-item{background:transparent;border-radius:6px;padding:6px 0;gap:4px}
+#music-page .library-open{gap:12px;padding:0;min-height:0;font-weight:400;color:var(--ink)}
+#music-page .pin-button{color:var(--muted);min-width:40px;padding:8px}
+#music-page .pin-button[aria-pressed=true]{color:var(--accent)}
+#music-page .library-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:16px 12px}
+#music-page .library-grid .library-item{flex-direction:column;align-items:stretch;padding:0;position:relative}
+#music-page .library-grid .library-open{flex-direction:column;align-items:stretch;gap:6px}
+#music-page .library-grid .library-open .art{width:100%;height:auto}
+#music-page .library-grid .pin-button{position:absolute;top:2px;right:2px;background:#0008;border-radius:50%;min-width:34px;min-height:34px;padding:6px}
+#music-page .blend-entry{background:linear-gradient(125deg,#2f2f31,#1f2329);margin:22px 0 0;border-radius:8px}
+#music-page .collection-heading .welcome{color:var(--accent)}
+
+/* Fogli che salgono dal basso: Crea e Chi ascolta. */
+dialog.music-sheet{background:#232325;border:0;border-radius:14px;padding:18px 18px 22px;width:min(460px,94vw);color:#f6f6f6;--muted:#a9a9ad}
+dialog.music-sheet::backdrop{background:#000b}
+@media(max-width:650px){dialog.music-sheet{margin:auto 0 0;width:100%;max-width:100%;border-radius:16px 16px 0 0;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px))}}
+.music-sheet .dialog-heading{margin-bottom:10px}
+.music-sheet .dialog-heading h2{font-size:1.2rem}
+.sheet-list{display:flex;flex-direction:column}
+.sheet-item{display:flex;align-items:center;gap:14px;width:100%;background:transparent;padding:10px 4px;text-align:left;color:#f6f6f6;font-weight:400;border-radius:8px}
+.sheet-item:hover{background:#ffffff0d}
+.sheet-mark{width:44px;height:44px;border-radius:50%;background:#3a3a3d;display:grid;place-items:center;flex-shrink:0;color:#f6f6f6}
+.sheet-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sheet-copy strong{font-size:1rem;font-weight:600}
+.sheet-copy small{color:#a9a9ad;font-size:.8rem}
+.sheet-item[aria-pressed=true] .sheet-copy strong{color:var(--accent)}
+
+/* Lettore: scheda sopra la barra (telefono), barra intera (PC). Lo sfondo prende il colore della copertina. */
+#audio-bar.audio-bar .bar-icon,#audio-bar.audio-bar #mini-like{color:#fff}
+#audio-bar #mini-like[aria-pressed=true]{color:var(--accent)}
+.bar-icon svg{width:24px;height:24px}
+@media(max-width:899px){
+  #audio-bar.audio-bar{left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));height:58px;min-height:0;padding:7px 6px 7px 7px;gap:2px;flex-wrap:nowrap;border:0;border-radius:8px;
+    background:var(--mini-color,#333335);backdrop-filter:none;box-shadow:0 8px 24px #0009;overflow:hidden;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;transition:background-color 300ms var(--ease,ease),transform 160ms cubic-bezier(.2,.8,.2,1)}
+  body[data-page=music] #audio-bar.audio-bar{bottom:calc(var(--nav-h) + 2px + env(safe-area-inset-bottom,0px))}
+  #audio-bar .bar-track{order:1;flex:1;display:flex;align-items:center;gap:10px;min-width:0}
+  #audio-bar.audio-bar #audio-cover{width:44px;height:44px;border-radius:4px;flex-shrink:0}
+  #audio-bar #open-music-player{flex:1;min-width:0;min-height:44px;padding:0;background:transparent;text-align:left;display:flex;flex-direction:column;justify-content:center;gap:1px}
+  #audio-bar #audio-title{font-size:.86rem;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  #audio-bar #audio-artist{font-size:.78rem;color:#ffffffbf;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-weight:400}
+  #audio-bar .bar-center,#audio-bar .bar-buttons,#audio-bar .bar-tools{display:contents}
+  #audio-bar #audio-prev,#audio-bar #audio-next,#audio-bar .audio-seek,#audio-bar #bar-lyrics,#audio-bar #bar-queue,#audio-bar .volume,#audio-bar #bar-now{display:none!important}
+  #audio-bar #mini-devices{order:2}
+  #audio-bar #mini-like{order:3}
+  #audio-bar.audio-bar #audio-toggle{order:4;background:transparent;color:#fff;width:44px;min-width:44px;height:44px;border-radius:50%;font-size:1.35rem;padding:0;box-shadow:none}
+  #audio-bar.audio-bar .bar-icon{min-width:40px;width:40px;height:44px;padding:0;display:grid;place-items:center;background:transparent}
+  .mini-progress{position:absolute;left:8px;right:8px;bottom:0;height:2px;background:#ffffff38;border-radius:2px;overflow:hidden}
+  #mini-progress-fill{display:block;height:100%;width:0;background:#fff;border-radius:2px}
+  body[data-page=music] #toast{bottom:calc(var(--nav-h) + 76px + env(safe-area-inset-bottom,0px))}
+}
+
+/* PC: libreria a sinistra, contenuto al centro, «In riproduzione» a destra (si chiude), barra intera in basso. */
+@media(min-width:900px){
+  body[data-page=music]{background:#000}
+  body[data-page=music] main{max-width:none;padding:0 8px 0}
+  body[data-page=music].has-audio main{padding-bottom:96px}
+  body[data-page=music] .topbar{padding:10px 16px;border-bottom:0}
+  #music-page .music-app{display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto 1fr;gap:8px;align-items:start}
+  body.now-open #music-page .music-app{grid-template-columns:300px minmax(0,1fr) 320px}
+  #music-nav{position:sticky;top:8px;grid-column:1;grid-row:1;display:flex;flex-direction:column;gap:2px;height:auto;padding:10px 8px;background:var(--bg);border-radius:8px}
+  #music-nav button{flex-direction:row;justify-content:flex-start;gap:16px;padding:9px 12px;font-size:.95rem;font-weight:700;min-height:44px}
+  #music-nav button:hover{color:var(--ink)}
+  .music-side{grid-column:1;grid-row:2;position:sticky;top:244px;background:var(--bg);border-radius:8px;padding:10px 8px 12px;max-height:calc(100dvh - 252px - var(--audio-bar-height,0px));overflow:auto;scrollbar-width:thin}
+  .music-main{grid-column:2;grid-row:1/3;min-width:0;background:var(--bg);border-radius:8px;padding:0 24px 32px;min-height:calc(100dvh - 120px);overflow:clip}
+  .music-now{grid-column:3;grid-row:1/3;position:sticky;top:8px;background:var(--bg);border-radius:8px;padding:14px 16px;max-height:calc(100dvh - 16px - var(--audio-bar-height,0px));overflow:auto;scrollbar-width:thin}
+  .music-top{margin:0 -24px -52px;padding:0 16px}
+  .music-hero{margin:0 -24px;padding:76px 24px 10px;display:grid;grid-template-columns:clamp(160px,18vw,232px) minmax(0,1fr);gap:8px 24px;align-items:end}
+  .music-hero .hero-cover{width:100%;margin:0;transform-origin:0 100%}
+  .hero-text{margin:0}
+  .hero-text h2{font-size:clamp(2.2rem,4.6vw,4.6rem);line-height:1.02;letter-spacing:-.04em;margin-bottom:12px}
+  .hero-kind{font-size:.85rem}
+  .hero-actions,.music-hero .playlist-edit{grid-column:1/-1}
+  .hero-actions{justify-content:flex-start;gap:12px;margin-top:16px}
+  .hero-play{order:-1;flex-direction:row-reverse;gap:16px}
+  .play-big{width:58px;height:58px}
+  .music-search-field{padding-top:16px}
+  .music-search-field .search{max-width:520px}
+  .shelf-row{margin:0 -24px;padding:0 24px 4px;scroll-padding:0 24px}
+  #music-page .shelf-card,#music-page .shelf-card .art,#music-page .shelf-card .art-frame .art{width:176px}
+  #music-page .shelf-card{flex-basis:176px}
+  #music-page .shelf-card .art{height:176px}
+  #music-results:has(>.shelf-card){grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
+  #music-page .shelf-row .mood-card{flex-basis:176px;width:176px;height:176px}
+  .quick-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .quick-open{height:64px}
+  .quick-open .art{width:64px;height:64px}
+  .quick-title{font-size:.88rem}
+  .skeleton-quick{grid-template-columns:repeat(4,1fr)}
+  .browse-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+  #music-page .browse-grid .mood-card{height:140px}
+  .browse-grid .mood-card .tile-name{font-size:1.25rem}
+  .browse-grid .mood-card .art.tilt{max-width:104px}
+  .search-top{grid-template-columns:minmax(260px,2fr) 3fr;align-items:start}
+  #music-page .library-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  #music-page .track-row:hover{background:#ffffff0d;border-radius:6px}
+  .skeleton-block.hero{margin:76px 0 22px;width:232px}
+  /* Lettore a tutta larghezza. */
+  #audio-bar.audio-bar{display:grid;grid-template-columns:minmax(200px,1fr) minmax(340px,2fr) minmax(200px,1fr);align-items:center;gap:16px;height:84px;min-height:0;padding:8px 16px;background:#000;border-top:0;box-shadow:none;backdrop-filter:none}
+  #audio-bar .bar-track{display:flex;align-items:center;gap:12px;min-width:0}
+  #audio-bar.audio-bar #audio-cover{width:56px;height:56px;border-radius:4px}
+  #audio-bar #open-music-player{background:transparent;padding:0;text-align:left;min-width:0;display:flex;flex-direction:column;gap:2px}
+  #audio-bar #audio-title{font-size:.88rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  #audio-bar #audio-artist{font-size:.76rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  #audio-bar .bar-center{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}
+  #audio-bar .bar-buttons{display:flex;align-items:center;gap:14px}
+  #audio-bar .bar-buttons .icon-button{background:transparent;color:var(--muted,#a9a9ad);font-size:1.1rem;min-width:36px;min-height:36px;padding:4px}
+  #audio-bar.audio-bar #audio-toggle{width:38px;min-width:38px;height:38px;min-height:38px;border-radius:50%;background:var(--accent);color:#04140a;font-size:1rem}
+  #audio-bar .audio-seek{width:100%;max-width:600px;font-size:.7rem;color:var(--muted,#a9a9ad)}
+  #audio-bar .bar-tools{display:flex;align-items:center;justify-content:flex-end;gap:2px;min-width:0}
+  #audio-bar .bar-tools .quiet{font-size:.78rem;padding:6px 8px;min-height:36px;color:var(--muted,#a9a9ad)}
+  #audio-bar .bar-icon{background:transparent;min-width:36px;padding:6px}
+  #audio-bar .bar-icon svg{width:20px;height:20px}
+  #audio-bar #bar-now[aria-pressed=true]{color:var(--accent)}
+  #audio-bar .volume{width:120px;font-size:0;gap:0}
+  #audio-bar .volume input{width:100%}
+  .mini-progress{display:none}
+}
+@media(min-width:900px) and (max-width:1199px){#music-page .music-now,#audio-bar #bar-now{display:none!important}body.now-open #music-page .music-app{grid-template-columns:260px minmax(0,1fr)}#music-page .music-app{grid-template-columns:260px minmax(0,1fr)}}
+
+/* Libreria a sinistra (PC). */
+.side-head{display:flex;align-items:center;justify-content:space-between;padding:0 6px 8px}
+.side-head h2{font-size:1rem;margin:0;font-weight:700}
+.side-head .icon-button{color:var(--muted);min-width:36px;min-height:36px;padding:6px}
+.music-side .chips{padding:2px 6px 10px}
+.side-list{display:flex;flex-direction:column}
+.side-row{display:flex;align-items:center;gap:12px;width:100%;background:transparent;padding:6px;border-radius:6px;text-align:left;color:var(--ink);font-weight:400;min-height:0}
+.side-row:hover{background:#ffffff12}
+.side-row .art{width:48px;height:48px}
+.side-artist .art{border-radius:50%}
+.side-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+.side-copy strong{font-size:.92rem;font-weight:500;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.side-copy small{color:var(--muted);font-size:.78rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+
+/* «In riproduzione» (PC). */
+.music-now{background-image:linear-gradient(180deg,var(--now-color,transparent) 0,transparent 340px)}
+.now-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.now-head strong{font-size:.95rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.now-head .icon-button{color:var(--muted);min-width:34px;min-height:34px;padding:6px}
+.now-cover{width:100%;aspect-ratio:1;border-radius:8px;object-fit:cover;box-shadow:0 10px 30px #0008}
+.now-title{margin:14px 0}
+.now-title strong{display:block;font-size:1.4rem;font-weight:800;line-height:1.2}
+.now-card{background:var(--surface);border-radius:8px;padding:14px;margin-top:12px}
+.now-card h3{font-size:.95rem;margin:0 0 10px}
+.now-card dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0;font-size:.84rem}
+.now-card dt{color:var(--muted)}
+.now-card dd{margin:0;overflow-wrap:anywhere}
+.now-queue{list-style:none;padding:0;margin:0 0 10px}
+.now-next{display:flex;align-items:center;gap:10px;width:100%;background:transparent;padding:5px 4px;text-align:left;font-weight:400;min-height:0;border-radius:6px;color:var(--ink)}
+.now-next:hover{background:#ffffff12}
+.now-next img{width:40px;height:40px;border-radius:4px;flex-shrink:0}
+.now-next span{display:flex;flex-direction:column;min-width:0}
+.now-next strong,.now-next small{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.now-next strong{font-size:.86rem;font-weight:500}
+.now-next small{color:var(--muted);font-size:.76rem}
+.now-card .pill{min-height:34px;padding:6px 14px;font-size:.8rem;border-radius:999px}
+
+/* Modalità TV: fuoco ben visibile sulle schede e righe nuove. */
+.tv #music-page .shelf-card:focus-visible,.tv #music-page .quick-open:focus-visible,.tv #music-page .mood-card:focus-visible,.tv #music-page .library-open:focus-visible,.tv .side-row:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+
+/* Movimento: pressione, passaggio fra pagine (150 ms), rispetto per chi lo riduce. */
+.pressed{transform:scale(.97);transition:transform 90ms var(--ease,ease)}
+.shelf-card,.quick-open,.mood-card,.library-open,.library-row,.side-row,.chip,.sheet-item,#music-nav button{transition:transform 120ms cubic-bezier(.4,0,.2,1),background-color 150ms cubic-bezier(.4,0,.2,1)}
+::view-transition-old(music-page),::view-transition-new(music-page){animation-duration:150ms;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+@media(prefers-reduced-motion:reduce){
+  .pressed{transform:none}
+  .skeleton-block{animation:none}
+  .music-hero .hero-cover{transform:none}
+  ::view-transition-old(music-page),::view-transition-new(music-page){animation:none}
+  .shelf-card,.quick-open,.mood-card,.library-open,.library-row,.side-row,.chip,.sheet-item,#music-nav button,.music-top,.music-top strong,#audio-bar.audio-bar{transition:none}
+}
+
+/* Piccole correzioni viste nelle schermate. */
+body[data-page=music] .demo-notice{margin:8px 0 8px;font-size:.74rem;line-height:1.4}
+@media(max-width:650px){
+  #music-page .editable-list .track-row{flex-wrap:nowrap}
+  #music-page .editable-list .track-row .quiet{min-width:26px;width:26px;padding:4px 0;font-size:.95rem}
+  #music-page .editable-list .track-main{flex:1 1 auto;gap:10px}
+  #music-page .editable-list .track-cover{width:40px;height:40px}
+}
+
+/* Frecce e × della playlist solo in modalità modifica. */
+.editable-list:not(.editing) .edit-tool{display:none}
+
+/* ——— Giro I (6/11/2026): titoli che non si toccano, barra in alto coerente, tocco ≥ 44 px ——— */
+.hero-text h2{line-height:1.15}
+.hero-kind{margin-bottom:6px}
+.chip,#music-page .chip.secondary{min-height:36px;height:36px}
+#music-nav button{min-height:44px}
+.quick-open{min-height:56px}
+.music-top strong{min-width:0}
+@media(min-width:900px){.hero-text h2{line-height:1.08;padding-top:.04em}.hero-kind{margin-bottom:10px}}
+
+/* 8/11 (dal lavoro «Audit Musica», ricolorato: verde Apollon su grigi neutri, mai rosa). */
+@media(max-width:899px){body[data-page=music] #music-side{display:none}}
+body[data-page=music]{--bg:#121212;--surface:#1c1c1e;--raised:#2a2a2c;--ink:#f6f6f6;--muted:#a9a9ad;--line:#303034;--accent:#2cd46b;--accent-ink:#04140a;font-family:"Figtree","Segoe UI",sans-serif}
+body[data-page=music] .music-main{min-width:0}
+body[data-page=music] .section-top h2{font-size:clamp(1.5rem,2.6vw,2.2rem);letter-spacing:-.035em}
+body[data-page=music] .shelf-title{line-height:1.35}
+body[data-page=music] .shelf-sub{color:var(--muted);line-height:1.5}
+body[data-page=music] .shelf-card{border-radius:14px;padding:10px;text-align:left}
+body[data-page=music] .shelf-card:focus-visible{outline:3px solid var(--accent);outline-offset:-3px;background:var(--raised)}
+body[data-page=music] .shelf-card .art{border-radius:12px;box-shadow:0 8px 24px #0004}
+body[data-page=music] .round-card .art{border-radius:50%}
+body[data-page=music] .chip,#music-page .chip.secondary{min-height:44px;height:auto}
+body[data-page=music] .music-search-field .search{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:14px}
+body[data-page=music] .music-search-field .search input{color:var(--ink);font-weight:500}
+body[data-page=music] .music-search-field .search input::placeholder{color:var(--muted)}
+body[data-page=music] #music-nav button[aria-pressed=true]{color:var(--accent);background:#2cd46b14}
+body[data-page=music] .music-side{border-right:1px solid var(--line)}
+body[data-page=music] .quick-tile{background:var(--surface);border-radius:12px;overflow:hidden}
+body[data-page=music] .empty{padding:32px 20px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+body[data-page=music] .music-hero{border-radius:0 0 24px 24px}
+body[data-page=music] .music-hero h2{overflow-wrap:anywhere}
+body[data-page=music] .music-sheet{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+@media(hover:hover){body[data-page=music] .shelf-card:hover{background:var(--surface)}}
+@media(min-width:900px){body[data-page=music] .music-main{padding-inline:28px}body[data-page=music] .shelf-head{margin-top:28px}}
+@media(prefers-reduced-motion:reduce){body[data-page=music] *,body[data-page=music] *::before,body[data-page=music] *::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
